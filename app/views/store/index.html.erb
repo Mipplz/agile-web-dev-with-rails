@@ -15,7 +15,7 @@
                         <%= sanitize(product.description) %>
                     </p>
                     <div class="price">
-                        <%= number_to_currency product.price %>
+                        <%= number_to_currency product.price, unit: "PLN ", format: "%n %u" %>
                     </div>
                 </li>
             <% end %>
