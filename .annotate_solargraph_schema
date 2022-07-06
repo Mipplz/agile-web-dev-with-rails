@@ -214,20 +214,69 @@ class LineItem < ApplicationRecord
   # Database column `line_items.updated_at`, type: `datetime`.
   # @return [ActiveSupport::TimeWithZone, nil]
   def updated_at; end
-  # Database column `line_items.quiantity`, type: `integer`.
-  # @param val [Integer, nil]
-  def quiantity=(val); end
-  # Database column `line_items.quiantity`, type: `integer`.
-  # @return [Integer, nil]
-  def quiantity; end
   # Database column `line_items.quantity`, type: `integer`.
   # @param val [Integer, nil]
   def quantity=(val); end
   # Database column `line_items.quantity`, type: `integer`.
   # @return [Integer, nil]
   def quantity; end
+  # Database column `line_items.order_id`, type: `integer`.
+  # @param val [Integer, nil]
+  def order_id=(val); end
+  # Database column `line_items.order_id`, type: `integer`.
+  # @return [Integer, nil]
+  def order_id; end
 end
 # %%<RailsAnnotateSolargraph:End:line_items>%%
+
+
+# %%<RailsAnnotateSolargraph:Start:orders>%%
+
+class Order < ApplicationRecord
+  # Database column `orders.id`, type: `integer`.
+  # @param val [Integer, nil]
+  def id=(val); end
+  # Database column `orders.id`, type: `integer`.
+  # @return [Integer, nil]
+  def id; end
+  # Database column `orders.name`, type: `string`.
+  # @param val [String, nil]
+  def name=(val); end
+  # Database column `orders.name`, type: `string`.
+  # @return [String, nil]
+  def name; end
+  # Database column `orders.address`, type: `text`.
+  # @param val [String, nil]
+  def address=(val); end
+  # Database column `orders.address`, type: `text`.
+  # @return [String, nil]
+  def address; end
+  # Database column `orders.email`, type: `string`.
+  # @param val [String, nil]
+  def email=(val); end
+  # Database column `orders.email`, type: `string`.
+  # @return [String, nil]
+  def email; end
+  # Database column `orders.pay_type`, type: `integer`.
+  # @param val [Integer, nil]
+  def pay_type=(val); end
+  # Database column `orders.pay_type`, type: `integer`.
+  # @return [Integer, nil]
+  def pay_type; end
+  # Database column `orders.created_at`, type: `datetime`.
+  # @param val [ActiveSupport::TimeWithZone, nil]
+  def created_at=(val); end
+  # Database column `orders.created_at`, type: `datetime`.
+  # @return [ActiveSupport::TimeWithZone, nil]
+  def created_at; end
+  # Database column `orders.updated_at`, type: `datetime`.
+  # @param val [ActiveSupport::TimeWithZone, nil]
+  def updated_at=(val); end
+  # Database column `orders.updated_at`, type: `datetime`.
+  # @return [ActiveSupport::TimeWithZone, nil]
+  def updated_at; end
+end
+# %%<RailsAnnotateSolargraph:End:orders>%%
 
 
 # %%<RailsAnnotateSolargraph:Start:products>%%
