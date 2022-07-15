@@ -42,8 +42,6 @@
               <li><%= button_to 'Logout', logout_path, method: :delete %></li>
             </ul>
           </nav>
-        <% else %>
-          <p><%= session[:user_id] %></p>
         <% end %>
       </nav>
       <main class='<%= controller.controller_name %>'>

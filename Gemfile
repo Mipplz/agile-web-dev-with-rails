@@ -7,6 +7,9 @@ gem 'rubocop'
 gem 'rubocop-rails', '~> 2.15', '>= 2.15.2'
 gem 'solargraph'
 
+gem 'haml'
+gem 'haml-rails'
+
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails', branch: 'main'
 gem 'rails', '~> 6.0.4', '>= 6.0.4.7'
 # Use sqlite3 as the database for Active Record
