@@ -4,6 +4,7 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 ruby '2.7.6'
 
 gem 'rubocop'
+gem 'rubocop-rails', '~> 2.15', '>= 2.15.2'
 gem 'solargraph'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails', branch: 'main'
