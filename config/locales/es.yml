@@ -64,4 +64,7 @@ es:
       header:
         one: "1 error ha impedido que este %{model} se guarde"
         other: "%{count} errores han impedido que este %{model} se guarde"
+  payment:
+    index:
+      continue: "Seguir"
   thanks: "Gracias por su pedido"

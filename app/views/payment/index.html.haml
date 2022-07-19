@@ -1,0 +1,31 @@
+.payment_box
+  %h1.payment_type Pay using Secure Web Page
+
+  %form#secure_web_page{"accept-charset" => "UTF-8", action: "https://sandbox.espago.com/secure_web_page", method: "post"}
+    %input{name: "api_version", type: "hidden", value: "3"}/
+    %input{name: "app_id", type: "hidden", value: "#{@app_id}"}/
+    %input{name: "kind", type: "hidden", value: "sale"}/
+    %input{name: "session_id", type: "hidden", value: "#{@session_id}"}/
+    %input{name: "amount", type: "hidden", value: "#{@amount}"}/
+    %input{name: "currency", type: "hidden", value: "PLN"}/
+    %input{name: "title", type: "hidden", value: "payment_id:#{@order['id']}"}/
+    %input{name: "description", type: "hidden",
+      value: "Depot purchase: ##{@order['id']}"}/
+    %input{name: "positive_url", type: "hidden", value: "http://example.com/payments/ok"}/
+    %input{name: "negative_url", type: "hidden", value: "http://example.com/payments/bad"}/
+    %input{name: "ts", type: "hidden", value: "#{@ts}"}/
+    %input{name: "checksum", type: "hidden", value: "#{@checksum}"}/
+    %button.continue{name: "continue", type: "submit"}= t('.continue')
+
+.payment_box
+  %h1.payment_type Pay using iFrame
+
+%div
+  %ul
+    %li= "app_id: " + @app_id
+    %li= "session_id: " + @session_id
+    %li= "total_price: " + @amount
+    %li= "order: " + @order.to_s
+    %li= "ts: " + @ts.to_s
+    %li= "checksum: " + @checksum
+

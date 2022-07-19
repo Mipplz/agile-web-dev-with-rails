@@ -30,7 +30,10 @@ class OrdersController < ApplicationController
       if @order.save
         Cart.destroy(session[:cart_id])
         session[:cart_id] = nil
-        format.html { redirect_to store_index_url(locale: I18n.locale), notice: I18n.t('.thanks') }
+        # format.html { redirect_to store_index_url(locale: I18n.locale), notice: I18n.t('.thanks') }
+        session[:order_amount] = @cart.total_price
+        session[:order] = @order
+        format.html { redirect_to payment_url(locale: I18n.locale) }
         format.json { render :show, status: :created, location: @order }
       else
         format.html { render :new, status: :unprocessable_entity }
