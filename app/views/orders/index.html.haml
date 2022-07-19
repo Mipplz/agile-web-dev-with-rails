@@ -8,6 +8,7 @@
       %th Address
       %th Email
       %th Pay type
+      %th Payment status
       %th{:colspan => "3"}
   %tbody
     - @orders.each do |order|
@@ -16,6 +17,7 @@
         %td= order.address
         %td= order.email
         %td= order.pay_type
+        %td= order.payment_status
         %td= link_to 'Show', order
         %td= link_to 'Edit', edit_order_path(order)
         %td= link_to 'Destroy', order, method: :delete, data: { confirm: 'Are you sure?' }

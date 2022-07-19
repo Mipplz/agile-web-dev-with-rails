@@ -12,6 +12,9 @@
 %p
   %strong Pay type:
   = @order.pay_type
+%p
+  %strong Payment status:
+  = Order.payment_status.key(@order.payment_status)
 = link_to 'Edit', edit_order_path(@order)
 |
 = link_to 'Back', orders_path

@@ -178,6 +178,12 @@ class LineItem < ApplicationRecord
   # `belongs_to` relation with `Cart`. Database column `line_items.cart_id`.
   # @return [Cart, nil]
   def cart; end
+  # `belongs_to` relation with `Order`. Database column `line_items.order_id`.
+  # @param val [Order, nil]
+  def order=(val); end
+  # `belongs_to` relation with `Order`. Database column `line_items.order_id`.
+  # @return [Order, nil]
+  def order; end
   # `belongs_to` relation with `Product`. Database column `line_items.product_id`.
   # @param val [Product, nil]
   def product=(val); end
@@ -233,6 +239,12 @@ end
 # %%<RailsAnnotateSolargraph:Start:orders>%%
 
 class Order < ApplicationRecord
+  # `has_many` relation with `LineItem`. Database column `line_items.order_id`.
+  # @param val [Array<LineItem>, nil]
+  def line_items=(val); end
+  # `has_many` relation with `LineItem`. Database column `line_items.order_id`.
+  # @return [Array<LineItem>, nil]
+  def line_items; end
   # Database column `orders.id`, type: `integer`.
   # @param val [Integer, nil]
   def id=(val); end
@@ -275,6 +287,12 @@ class Order < ApplicationRecord
   # Database column `orders.updated_at`, type: `datetime`.
   # @return [ActiveSupport::TimeWithZone, nil]
   def updated_at; end
+  # Database column `orders.payment_status`, type: `integer`.
+  # @param val [Integer, nil]
+  def payment_status=(val); end
+  # Database column `orders.payment_status`, type: `integer`.
+  # @return [Integer, nil]
+  def payment_status; end
 end
 # %%<RailsAnnotateSolargraph:End:orders>%%
 
@@ -332,4 +350,41 @@ class Product < ApplicationRecord
   def updated_at; end
 end
 # %%<RailsAnnotateSolargraph:End:products>%%
+
+
+# %%<RailsAnnotateSolargraph:Start:users>%%
+
+class User < ApplicationRecord
+  # Database column `users.id`, type: `integer`.
+  # @param val [Integer, nil]
+  def id=(val); end
+  # Database column `users.id`, type: `integer`.
+  # @return [Integer, nil]
+  def id; end
+  # Database column `users.name`, type: `string`.
+  # @param val [String, nil]
+  def name=(val); end
+  # Database column `users.name`, type: `string`.
+  # @return [String, nil]
+  def name; end
+  # Database column `users.password_digest`, type: `string`.
+  # @param val [String, nil]
+  def password_digest=(val); end
+  # Database column `users.password_digest`, type: `string`.
+  # @return [String, nil]
+  def password_digest; end
+  # Database column `users.created_at`, type: `datetime`.
+  # @param val [ActiveSupport::TimeWithZone, nil]
+  def created_at=(val); end
+  # Database column `users.created_at`, type: `datetime`.
+  # @return [ActiveSupport::TimeWithZone, nil]
+  def created_at; end
+  # Database column `users.updated_at`, type: `datetime`.
+  # @param val [ActiveSupport::TimeWithZone, nil]
+  def updated_at=(val); end
+  # Database column `users.updated_at`, type: `datetime`.
+  # @return [ActiveSupport::TimeWithZone, nil]
+  def updated_at; end
+end
+# %%<RailsAnnotateSolargraph:End:users>%%
 
