@@ -1,12 +1,14 @@
 class BackRequestsController < ApplicationController
   skip_before_action :verify_authenticity_token
   skip_before_action :authorize
-  http_basic_authenticate_with name: BACK_REQUEST_SETTINGS['login'], password: BACK_REQUEST_SETTINGS['password']
+  http_basic_authenticate_with name: ::BACK_REQUEST_SETTINGS['login'], password: ::BACK_REQUEST_SETTINGS['password']
 
   def update
+    return if params['subject'] != 'payment'
+
     order_id = params["description"].split(':').last.to_i
-    @order = Order.find(order_id)
-    head :ok if @order.update(order_params)
+    order = Order.find(order_id)
+    head :ok if order.update(order_params)
   end
 
   private

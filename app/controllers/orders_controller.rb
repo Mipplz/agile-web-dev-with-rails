@@ -31,7 +31,7 @@ class OrdersController < ApplicationController
         Cart.destroy(session[:cart_id])
         session[:cart_id] = nil
         session[:order_amount] = @cart.total_price
-        session[:order] = @order
+        session[:order_id] = @order['id']
         format.html { redirect_to payment_url(locale: I18n.locale) }
         format.json { render :show, status: :created, location: @order }
       else

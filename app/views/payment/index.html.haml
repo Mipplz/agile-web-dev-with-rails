@@ -1,6 +1,11 @@
 - if notice
   %aside#notice= notice
 %h1 Choose payment method
+
+- if @order['reject_reason'] != nil
+  .failure_wrapper
+    %h2 Be aware that previous payment attempt resulted in a failure
+    %p= @error_msg.html_safe
 .payment_type_wrapper
   .payment_box
     %h2.payment_type Pay using Secure Web Page
@@ -29,8 +34,9 @@
     %li= "app_id: " + @app_id
     %li= "session_id: " + @session_id
     %li= "total_price: " + @amount
-    %li= "order: " + @order.to_s
+    %li= "order: " + @order.attributes.to_s
     %li= "ts: " + @ts.to_s
     %li= "checksum: " + @checksum
-    %li= "Depot purchase: ##{@order['id']}"
+    %li= "Depot purchase: #{@order['id']}"
+    %li= "reject reason: #{ @order['reject_reason']}"
 
