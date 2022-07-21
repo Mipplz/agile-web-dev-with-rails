@@ -293,6 +293,18 @@ class Order < ApplicationRecord
   # Database column `orders.payment_status`, type: `integer`.
   # @return [Integer, nil]
   def payment_status; end
+  # Database column `orders.issuer_response_code`, type: `string`.
+  # @param val [String, nil]
+  def issuer_response_code=(val); end
+  # Database column `orders.issuer_response_code`, type: `string`.
+  # @return [String, nil]
+  def issuer_response_code; end
+  # Database column `orders.reject_reason`, type: `string`.
+  # @param val [String, nil]
+  def reject_reason=(val); end
+  # Database column `orders.reject_reason`, type: `string`.
+  # @return [String, nil]
+  def reject_reason; end
 end
 # %%<RailsAnnotateSolargraph:End:orders>%%
 

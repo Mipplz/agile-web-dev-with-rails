@@ -1,5 +1,10 @@
 Rails.application.routes.draw do
   get 'admin' => 'admin#index'
+  controller :payment_result do
+    get 'payment_result/success' => :success
+    get 'payment_result/failure' => :failure
+  end
+  post 'back_requests' => 'back_requests#update'
   controller :sessions do
     get 'login' => :new
     post 'login' => :create

@@ -9,7 +9,8 @@ class Order < ApplicationRecord
     unpaid: 0,
     preauthorized: 1,
     executed: 2,
-    rejected: 3
+    rejected: 3,
+    accepted: 4
   }
   validates :name, :address, :email, presence: true
   validates :pay_type, inclusion: pay_types.keys
