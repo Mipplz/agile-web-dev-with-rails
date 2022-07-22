@@ -12,12 +12,12 @@ class PaymentResultController < ApplicationController
   def failure
     @order[:payment_status] = :rejected
     @order.save
-    redirect_to payment_url(locale: I18n.locale), notice: 'Failure + reason'
+    redirect_to payment_url(locale: I18n.locale), notice: 'Payment failed'
   end
 
   private
 
   def set_order
-    @order = Order.find(session[:order]['id'])
+    @order = Order.find(session[:order_id])
   end
 end

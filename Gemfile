@@ -9,6 +9,7 @@ gem 'solargraph'
 
 gem 'haml'
 gem 'haml-rails'
+gem 'simplecov', group: :test
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails', branch: 'main'
 gem 'rails', '~> 6.0.4', '>= 6.0.4.7'

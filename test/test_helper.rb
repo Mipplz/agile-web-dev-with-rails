@@ -1,6 +1,8 @@
 ENV['RAILS_ENV'] ||= 'test'
 require_relative '../config/environment'
 require 'rails/test_help'
+require 'simplecov'
+SimpleCov.start
 
 module AuthenticationHelpers
   def login_as(user)
@@ -13,9 +15,11 @@ module AuthenticationHelpers
       post login_url, params: { name: user.name, password: 'secret' }
     end
   end
+
   def logout
     delete logout_url
   end
+
   def setup
     login_as users(:one)
   end
@@ -24,6 +28,7 @@ end
 class ActionDispatch::IntegrationTest
   include AuthenticationHelpers
 end
+
 class ActionDispatch::SystemTestCase
   include AuthenticationHelpers
 end

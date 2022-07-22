@@ -14,6 +14,7 @@ class BackRequestsController < ApplicationController
   private
 
   def order_params
+    params[:payment_status] = params.delete :state
     params.permit(:payment_status, :issuer_response_code, :reject_reason)
   end
 end
