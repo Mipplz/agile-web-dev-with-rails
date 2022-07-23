@@ -8,7 +8,7 @@
     %p= @error_msg.html_safe
 .payment_type_wrapper
   .payment_box
-    %h2.payment_type Pay using Secure Web Page
+    %h2.payment_type= "Pay using<br>Secure Web Page".html_safe
 
     %form#secure_web_page{"accept-charset" => "UTF-8", action: "https://sandbox.espago.com/secure_web_page", method: "post"}
       %input{name: "api_version", type: "hidden", value: "3"}/
@@ -19,7 +19,7 @@
       %input{name: "currency", type: "hidden", value: "PLN"}/
       %input{name: "title", type: "hidden", value: "payment_id:#{@order['id']}"}/
       %input{name: "description", type: "hidden",
-        value: "Depot purchase: ##{@order['id']}"}/
+        value: "order:#{@order['id']}"}/
       %input{name: "positive_url", type: "hidden", value: "http://127.0.0.1:3000/payment_result/success"}/
       %input{name: "negative_url", type: "hidden", value: "http://127.0.0.1:3000/payment_result/failure"}/
       %input{name: "ts", type: "hidden", value: "#{@ts}"}/
@@ -28,15 +28,18 @@
 
   .payment_box
     %h2.payment_type Pay using iFrame
+    #iframe
+      %button.continue{type: "submit", onclick: "showEspagoFrame()"}= t('.continue')
+      %form#espago_form{"accept-charset" => "UTF-8", action: "/charge_client", method: "post"}
+        %input{name: "amount", type: "hidden", value: "#{@amount}"}
+        %input{name: "currency", type: "hidden", value: "pln"}
+        %input{name: "description", type: "hidden",
+          value: "order:#{@order['id']}"}
+
 
 %div
   %ul
-    %li= "app_id: " + @app_id
-    %li= "session_id: " + @session_id
     %li= "total_price: " + @amount
-    %li= "order: " + @order.attributes.to_s
-    %li= "ts: " + @ts.to_s
-    %li= "checksum: " + @checksum
-    %li= "Depot purchase: #{@order['id']}"
-    %li= "reject reason: #{ @order['reject_reason']}"
+    - @order.attributes.each do |attrib|
+      %li= "#{attrib[0]} => #{attrib[1]}"
 

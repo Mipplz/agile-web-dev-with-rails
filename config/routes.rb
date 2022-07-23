@@ -5,6 +5,7 @@ Rails.application.routes.draw do
     get 'payment_result/failure' => :failure
   end
   post 'back_requests' => 'back_requests#update'
+  post 'charge_client' => 'charge_client#charge'
   controller :sessions do
     get 'login' => :new
     post 'login' => :create

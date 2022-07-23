@@ -8,6 +8,16 @@
     'data-turbolinks-track': 'reload'
     = javascript_pack_tag 'application', 'data-turbolinks-track': 'reload'
     = javascript_pack_tag 'locale_switcher', 'data-turbolinks-track': 'reload'
+    %script{src: "https://js.espago.com/espago-1.2.js"}
+    %script{async: "",
+      src: "https://js.espago.com/iframe-1.0.js",
+      "data-key" => "NyCzvP188sc1eY-EHzyK",
+      "data-id" => "EspagoFrameScript",
+      "data-button" => "Pay",
+      "data-live" => "false",
+      'data-lang' => I18n.locale,
+    }
+      :cdata
   %body
     %header.main
       %aside

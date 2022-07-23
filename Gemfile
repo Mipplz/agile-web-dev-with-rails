@@ -7,6 +7,7 @@ gem 'rubocop'
 gem 'rubocop-rails', '~> 2.15', '>= 2.15.2'
 gem 'solargraph'
 
+gem 'faraday'
 gem 'haml'
 gem 'haml-rails'
 gem 'simplecov', group: :test

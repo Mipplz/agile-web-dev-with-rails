@@ -41,4 +41,5 @@ yarn-debug.log*
 .yarn-integrity
 
 
-back_request_settings.yml
+/config/back_request_settings.yml
+/config/baisc_authorization_espago.yml
