@@ -9,13 +9,16 @@ class ChargeClientController < ApplicationController
 
   def charge
     res = @conn.post('api/charges', @payment_data)
-    puts res.body
-    if res.success?
-      redirect_to(res.body["redirect_url"]) unless res.body["redirect_url"].nil?
-      # redirect_to payment_url(locale: I18n.locale), notice: 'Elo benc'
-    else
-      redirect_to payment_url(locale: I18n.locale), notice: 'Payment failed'
-    end
+
+    redirect_to payment_failure_url and return unless res.success?
+    redirect_to payment_failure_url and return if res.body["state"] == 'rejected'
+
+    redirect_to res.body["redirect_url"] and return if res.body["redirect_url"].present?
+
+    dcc_redirect_url = res.body.dig("dcc_decision_information", "redirect_url")
+    redirect_to dcc_redirect_url and return if dcc_redirect_url.present?
+
+    redirect_to store_index_url(locale: I18n.locale), notice: I18n.t('.thanks')
   end
 
   private

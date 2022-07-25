@@ -11,30 +11,33 @@ class OrdersTest < ApplicationSystemTestCase
   end
 
   test "creating a Order" do
+    visit store_index_url
+    click_on 'Add to Cart', match: :first
+    click_on 'Checkout'
+
     visit orders_url
     click_on "New Order"
 
-    fill_in "Address", with: @order.address
-    fill_in "Email", with: @order.email
     fill_in "Name", with: @order.name
-    fill_in "Pay type", with: @order.pay_type
-    click_on "Create Order"
+    fill_in "Address", with: @order.address
+    fill_in "E-mail", with: @order.email
+    select @order.pay_type, from: "Pay with"
+    click_on "Place Order"
 
-    assert_text "Order was successfully created"
-    click_on "Back"
+    assert_text "Choose payment method"
   end
 
   test "updating a Order" do
     visit orders_url
     click_on "Edit", match: :first
 
-    fill_in "Address", with: @order.address
-    fill_in "Email", with: @order.email
     fill_in "Name", with: @order.name
-    fill_in "Pay type", with: @order.pay_type
-    click_on "Update Order"
+    fill_in "Address", with: @order.address
+    fill_in "E-mail", with: @order.email
+    select @order.pay_type, from: "Pay with"
+    click_on "Place Order"
 
-    assert_text "Order was successfully updated"
+    assert_text "Order was successfully updated."
     click_on "Back"
   end
 
@@ -44,6 +47,6 @@ class OrdersTest < ApplicationSystemTestCase
       click_on "Destroy", match: :first
     end
 
-    assert_text "Order was successfully destroyed"
+    assert_text "Order was successfully destroyed."
   end
 end

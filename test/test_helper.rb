@@ -2,7 +2,10 @@ ENV['RAILS_ENV'] ||= 'test'
 require_relative '../config/environment'
 require 'rails/test_help'
 require 'simplecov'
+require 'selenium-webdriver'
 SimpleCov.start
+Capybara.default_max_wait_time = 10
+Capybara.server_port = ::SERVER_PORT.to_i
 
 module AuthenticationHelpers
   def login_as(user)

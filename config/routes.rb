@@ -1,8 +1,8 @@
 Rails.application.routes.draw do
   get 'admin' => 'admin#index'
   controller :payment_result do
-    get 'payment_result/success' => :success
-    get 'payment_result/failure' => :failure
+    get 'payment_result/success' => :success, as: :payment_success
+    get 'payment_result/failure' => :failure, as: :payment_failure
   end
   post 'back_requests' => 'back_requests#update'
   post 'charge_client' => 'charge_client#charge'

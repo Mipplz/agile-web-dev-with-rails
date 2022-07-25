@@ -1,4 +1,5 @@
 class PaymentResultController < ApplicationController
+  skip_before_action :authorize
   before_action :set_order
 
   def success
