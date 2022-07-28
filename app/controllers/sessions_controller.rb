@@ -5,6 +5,9 @@ class SessionsController < ApplicationController
 
   def create
     user = User.find_by name: params[:name]
+    # CR: [garbus] powinno byc `user&.authenticate params[:password]`
+    #   `&.` Działa tylko wtedy, gdy user jest nie nil.
+    #   np `data&.message` to jest jak `data.nil? && data.message`
     if user.try :authenticate, params[:password]
       session[:user_id] = user.id
       redirect_to admin_url

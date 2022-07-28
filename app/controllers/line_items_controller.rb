@@ -1,5 +1,6 @@
 class LineItemsController < ApplicationController
   skip_before_action :authorize, only: [:create]
+  # CR: [matik] nie podoba mi się mieszanie `include` z innymi metodami klas
   include CurrentCart
   before_action :set_cart, only: [:create]
   before_action :set_line_item, only: %i[show edit update destroy]

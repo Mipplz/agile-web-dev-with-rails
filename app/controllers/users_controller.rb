@@ -56,6 +56,19 @@ class UsersController < ApplicationController
       format.json { head :no_content }
     end
   end
+
+  # CR: [garbus] powinno byc rescue_from User::Error do |exception| -> nie przekazuj
+  # stringa, tylko nazwę klasy.
+
+  # CR: [matik] metody wywoływane na klasie powinny być na samej górze definicji
+  # i lepiej zdefiniować metodę która to obsługuje i podać jej nazwę jako parametr np:
+  # ```ruby
+  # rescue_from User::Error, :handle_user_error
+  #
+  # def handle_user_error(exception)
+  #   redirect_to users_url, notice: exception.message
+  # end
+  # ```
   rescue_from 'User::Error' do |exception|
     redirect_to users_url, notice: exception.message
   end

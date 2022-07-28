@@ -27,6 +27,7 @@ issuer_response_codes:
   "82": &82_code "ODMOWA – Nieprawidłowy kod CVV. Sprawdź poprawność wprowadzonych danych i spróbuj ponownie. UWAGA: Nie wolno powtarzać obciążeń dla tej karty.! Może to zostać uznane za próbę oszustwa!"
   "N7": *82_code
   "85": "Bank potwierdził autoryzację."
+  # CR: [matik] bardzo ładne korzystanie z anchorów YAMLowych, żeby uniknąć duplikacji!
   "91": &91_code "ODMOWA – Tymczasowy błąd po stronie banku, spróbuj ponownie."
   "92": *91_code
   "94": *91_code

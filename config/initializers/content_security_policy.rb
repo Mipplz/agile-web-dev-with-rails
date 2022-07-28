@@ -4,6 +4,10 @@
 # For further information see the following documentation
 # https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Content-Security-Policy
 
+# CR: [garbus] Skoro masz, to dlaczego nie korzystasz? ;) Warto odkomentowac
+# od razu w konsoli JS dostaniesz warningi o potencjalnych podatnosciach, a
+# rowniez ulepszysz bezpieczenstwo appki oraz uzytkownikow.
+
 # Rails.application.config.content_security_policy do |policy|
 #   policy.default_src :self, :https
 #   policy.font_src    :self, :https, :data

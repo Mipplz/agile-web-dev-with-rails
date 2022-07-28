@@ -1,5 +1,8 @@
 class ApplicationController < ActionController::Base
   before_action :set_i18n_locale_from_params
+  # CR: [matik] Jest więcej kontrolerów, które tego nie mają mieć.
+  # Lepiej dodać to `before_action` w kontrolerach, które to powinny mieć, zamiast
+  # dodawać do wszysktich i usuwać tam gdzie nie trzeba.
   before_action :authorize
 
   protected

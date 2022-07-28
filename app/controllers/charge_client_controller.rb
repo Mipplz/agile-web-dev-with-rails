@@ -1,9 +1,14 @@
 require "base64"
+# CR: [garbus] - '' zamiast "" -> uzywaj " tylko kiedy potrzebujesz, konwencja globalna
+# dla ruby.
 require 'faraday'
 
+# CR: [matik] kontrolery według konwencji powinny się nazywać
+# w liczbie mnogiej.
 class ChargeClientController < ApplicationController
   skip_before_action :verify_authenticity_token
   skip_before_action :authorize
+  # CR: [garbus] - tutaj przerwa, lepiej się czyta
   before_action :create_http_request
   before_action :prepare_request_body
 
@@ -24,16 +29,16 @@ class ChargeClientController < ApplicationController
   private
 
   def create_http_request
-    auth = Base64.encode64("#{::BASIC_AUTHORIZATION_ESPAGO['app_id']}:#{::BASIC_AUTHORIZATION_ESPAGO['password']}")
-    @conn = Faraday.new(url: 'https://sandbox.espago.com/',
-                        headers: { 'Accept' => 'application/vnd.espago.v3+json',
-                                   'Authorization' => "Basic #{auth}" }) do |f|
+    # CR: [garbus] - zrobiłem ci lekki refactor. wcześniej to brakowalo tylko GOTO ;)
+    @conn = Faraday.new(url: 'https://sandbox.espago.com/', headers: { Accept: 'application/json' }) do |f|
       f.response :json
       f.adapter :net_http
+      f.request :basic_auth, ::BASIC_AUTHORIZATION_ESPAGO['app_id'], ::BASIC_AUTHORIZATION_ESPAGO['password']
     end
   end
 
   def prepare_request_body
+    # CR: [garbus] - tutaj "" zamiast ''
     @payment_data = ""
     params["card"] = params.delete "card_token"
     params.each do |key, value|

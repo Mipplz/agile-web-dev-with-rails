@@ -30,6 +30,21 @@
     #iframe
       %button.continue{type: "submit", onclick: "showEspagoFrame()"}= t('.continue')
       %form#espago_form{"accept-charset" => "UTF-8", action: "/charge_client", method: "post"}
+        -# CR: [matik] To jest masakryczny security breach, nie powinno tak być
+        -# powinieneś tylko i wyłącznie przekazywać sobie z tego formularza token karty
+        -# i resztę parametrów dokładać na backendzie
+        -#
+        -# Ktoś podczas płatności może zmienić z łapy input `amount` w HTML
+        -# na mniejszą wartość i zapłaci mniej, a w bazie będziesz myślał, że
+        -# zapłacił całość!!
+        -#
+        -# Dajesz ludziom promocje, że mogą sobie zapłacić za towar ile chcą jak umieją
+        -# edytować HTML. Co ktoś tu wpisze, to do nas wyślesz.
+        -#
+        -# SecureWebPage nie ma takiego problemu, bo masz `checksum`, który może być poprawnie
+        -# wyliczony tylko na serwerze, więc edycja pół formularza skutkuje niepoprawnym checksum i odrzuceniem requesta przez Espago.
+        -#
+        -# Ten formularz powinien być pusty, bez inputów
         %input{name: "amount", type: "hidden", value:@amount.to_s}
         %input{name: "currency", type: "hidden", value: "pln"}
         %input{name: "description", type: "hidden", value: "order:#{@order['id']}"}
