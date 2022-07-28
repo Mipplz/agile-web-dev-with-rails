@@ -1,5 +1,6 @@
 class OrdersController < ApplicationController
   skip_before_action :authorize, only: [:new, :create]
+  # CR: [matik] nie podoba mi się mieszanie `include` z innymi metodami klas
   include CurrentCart
   before_action :set_cart, only: [:new, :create]
   before_action :ensure_cart_isnt_empty, only: :new

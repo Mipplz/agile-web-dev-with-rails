@@ -6,6 +6,7 @@ class BackRequestsController < ApplicationController
   def update
     return if params['subject'] != 'payment'
 
+    # CR: [garbus] - description powinno byc w '' a nie ""
     order_id = params["description"].split(':').last.to_i
     order = Order.find(order_id)
     head :ok if order.update(order_params)
@@ -14,6 +15,7 @@ class BackRequestsController < ApplicationController
   private
 
   def order_params
+    # CR: [garbus] - nieczytelne, ale sprytne!
     params[:payment_status] = params.delete :state
     params.permit(:payment_status, :issuer_response_code, :reject_reason)
   end

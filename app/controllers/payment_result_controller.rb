@@ -3,6 +3,7 @@ class PaymentResultController < ApplicationController
   before_action :set_order
 
   def success
+    # CR: [matik] to się łatwo myli z Hashem, lepiej używać `@order.payment_status = :accepted`
     @order[:payment_status] = :accepted
     @order.save
     redirect_to store_index_url(locale: I18n.locale), notice: I18n.t('.thanks')

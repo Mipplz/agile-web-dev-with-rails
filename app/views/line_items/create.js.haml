@@ -1,3 +1,10 @@
+-# CR: [matik] To nie powinien być HAML, bo do tego nie służy
+-# HAML jest tylko do renderowania HTML z wykonywaniem Ruby
+-#
+-# ERB za to to generalny syntax wykonywania kodu Ruby w tekście (dowolnym)
+-# HAML tylko do HTML!!!!
+-# ERB do wszystkiego
+
 cart = document.getElementById("cart")
 cart.innerHTML = "#{j render(@cart)}"
 notice = document.getElementById("notice")
