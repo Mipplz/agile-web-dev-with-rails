@@ -21,9 +21,9 @@
   .field
     = form.label :pay_type, t('.pay_type')
     = form.select :pay_type, [                                          |
-      [t('.pay_types.check'), "Check"],                                 |
-      [t('.pay_types.credit_cart'), "Credit card"],                     |
-      [t('.pay_types.purchase_order'), "Purchase order"]                |
+      [t('.pay_types.check'), :check],                                  |
+      [t('.pay_types.credit_cart'), :credit_card],                      |
+      [t('.pay_types.purchase_order'), :purchase_order]                 |
     ], prompt: t('.pay_prompt_html')                                    |
   .actions
     = form.submit t('.submit')

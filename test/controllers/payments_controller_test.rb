@@ -6,7 +6,7 @@ class PaymentControllerTest < ActionDispatch::IntegrationTest
     post orders_url, params: { order: { address: order.address, email: order.email, name: order.name, pay_type: order.pay_type } }
   end
   test "should get index" do
-    get payment_url
+    get payments_url
     assert_response :success
   end
 end

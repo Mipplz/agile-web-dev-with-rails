@@ -1,7 +1,9 @@
 class OrdersController < ApplicationController
-  skip_before_action :authorize, only: [:new, :create]
   include CurrentCart
-  before_action :set_cart, only: [:new, :create]
+
+  before_action :authorize, only: %i[index show edit update destroy]
+
+  before_action :set_cart, only: %i[new create]
   before_action :ensure_cart_isnt_empty, only: :new
   before_action :set_order, only: %i[show edit update destroy]
 
@@ -32,7 +34,7 @@ class OrdersController < ApplicationController
         session[:cart_id] = nil
         session[:order_amount] = @cart.total_price or 0.0
         session[:order_id] = @order['id']
-        format.html { redirect_to payment_url(locale: I18n.locale) }
+        format.html { redirect_to payments_url(locale: I18n.locale) }
         format.json { render :show, status: :created, location: @order }
       else
         format.html { render :new, status: :unprocessable_entity }

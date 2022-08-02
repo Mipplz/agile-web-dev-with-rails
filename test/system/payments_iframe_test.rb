@@ -13,7 +13,7 @@ def setup_order_for_payment
   click_on 'Place Order'
 end
 
-class PaymentIframeTest < ApplicationSystemTestCase
+class PaymentsIframeTest < ApplicationSystemTestCase
   setup do
     setup_order_for_payment
     @common_data = { "first_name" => 'Michał',

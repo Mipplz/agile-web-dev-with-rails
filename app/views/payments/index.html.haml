@@ -12,7 +12,7 @@
 
     %form#secure_web_page{"accept-charset" => "UTF-8", action: "https://sandbox.espago.com/secure_web_page", method: "post"}
       %input{name: "api_version", type: "hidden", value: "3"}/
-      %input{name: "app_id", type: "hidden", value: @app_id.to_s }/
+      %input{name: "app_id", type: "hidden", value: ::APP_ID }/
       %input{name: "kind", type: "hidden", value: "sale"}/
       %input{name: "session_id", type: "hidden", value: "#{@session_id}"}/
       %input{name: "amount", type: "hidden", value: @amount.to_s }/
@@ -20,7 +20,7 @@
       %input{name: "title", type: "hidden", value: "payment_id:#{@order['id']}"}/
       %input{name: "description", type: "hidden", value: "order:#{@order['id']}"}/
       %input{name: "ts", type: "hidden", value: "#{@ts}"}/
-      %input{name: "checksum", type: "hidden", value: "#{@checksum}"}/
+      %input{name: "checksum", type: "hidden", value: @checksum}/
       %input{name: "positive_url", type: "hidden", value: ::ESPAGO_RETURN_POSITIVE_URL}
       %input{name: "negative_url", type: "hidden", value: ::ESPAGO_RETURN_NEGATIVE_URL}
       %button.continue{name: "continue", type: "submit"}= t('.continue')
@@ -29,12 +29,7 @@
     %h2.payment_type Pay using iFrame
     #iframe
       %button.continue{type: "submit", onclick: "showEspagoFrame()"}= t('.continue')
-      %form#espago_form{"accept-charset" => "UTF-8", action: "/charge_client", method: "post"}
-        %input{name: "amount", type: "hidden", value:@amount.to_s}
-        %input{name: "currency", type: "hidden", value: "pln"}
-        %input{name: "description", type: "hidden", value: "order:#{@order['id']}"}
-        %input{name: "positive_url", type: "hidden", value: ::ESPAGO_RETURN_POSITIVE_URL}
-        %input{name: "negative_url", type: "hidden", value: ::ESPAGO_RETURN_NEGATIVE_URL}
+      %form#espago_form{"accept-charset" => "UTF-8", action: "/charge_clients", method: "post"}
 
 %div
   %h4 Cards:

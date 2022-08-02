@@ -1,9 +1,8 @@
-class PaymentResultController < ApplicationController
-  skip_before_action :authorize
+class PaymentResultsController < ApplicationController
   before_action :set_order
 
   def success
-    @order[:payment_status] = :accepted
+    @order.payment_status = :accepted
     @order.save
     redirect_to store_index_url(locale: I18n.locale), notice: I18n.t('.thanks')
     session[:order] = nil
@@ -11,9 +10,9 @@ class PaymentResultController < ApplicationController
   end
 
   def failure
-    @order[:payment_status] = :rejected
+    @order.payment_status = :rejected
     @order.save
-    redirect_to payment_url(locale: I18n.locale), notice: 'Payment failed'
+    redirect_to payments_url(locale: I18n.locale), notice: 'Payment failed'
   end
 
   private

@@ -1,23 +1,28 @@
 Rails.application.routes.draw do
-  get 'admin' => 'admin#index'
-  controller :payment_result do
-    get 'payment_result/success' => :success, as: :payment_success
-    get 'payment_result/failure' => :failure, as: :payment_failure
-  end
   post 'back_requests' => 'back_requests#update'
-  post 'charge_client' => 'charge_client#charge'
-  controller :sessions do
-    get 'login' => :new
-    post 'login' => :create
-    delete 'logout' => :destroy
-  end
-  resources :users
-  resources :products
+  post 'charge_clients' => 'charge_clients#charge'
+
   scope '(:locale)' do
-    resources :orders
-    resources :line_items
     resources :carts
-    get 'payment' => 'payment#index'
+    resources :line_items
+    resources :orders
+    resources :products
+    resources :users
+
+    get 'admin' => 'admin#index'
+    get 'payments' => 'payments#index'
+
+    controller :payment_results do
+      get 'payment_results/success' => :success, as: :payment_success
+      get 'payment_results/failure' => :failure, as: :payment_failure
+    end
+
+    controller :sessions do
+      get 'login' => :new
+      post 'login' => :create
+      delete 'logout' => :destroy
+    end
+
     root 'store#index', as: 'store_index', via: :all
   end
 

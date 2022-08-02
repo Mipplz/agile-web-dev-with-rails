@@ -11,6 +11,6 @@ class PaymentResultControllerTest < ActionDispatch::IntegrationTest
   end
   test "should redirect to payment after payment failure" do
     get payment_failure_url
-    assert_redirected_to payment_url(locale: I18n.locale)
+    assert_redirected_to payments_url(locale: I18n.locale)
   end
 end
